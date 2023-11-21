@@ -1,5 +1,5 @@
 """
-WSGI config for taverna_restaurant project.
+WSGI config for taverna project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'taverna_restaurant.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'taverna.settings')
 
 application = get_wsgi_application()

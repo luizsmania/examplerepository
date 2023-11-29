@@ -1,0 +1,608 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<style>
+    .menu {
+        background-color: #f8f8f8;
+        padding: 20px;
+    }
+    
+    /* Container styles */
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    
+    /* Category button styles */
+    .dropbtn {
+        background-color: #730314;
+        color: white;
+        padding: 15px 18px;
+        font-size: 18px;
+        border: none;
+        cursor: pointer;
+        border-radius: 4px;
+        margin: 10px 10px 10px 0; /* Add space on top, right, bottom, and remove margin on left */
+        transition: background-color 0.3s;
+    }
+    
+    /* Change button background color on hover */
+    .dropbtn:hover {
+        background-color: #58100f; /* Darken the color on hover */
+    }
+    
+    /* Style for the dropdown content */
+    .item {
+        display: none;
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+    }
+    
+    /* Show the dropdown content when the "active" class is added */
+    .active {
+        display: block;
+    }
+    
+    /* Style for the item details */
+    .item span {
+        display: block;
+        font-weight: bold;
+        font-family: 'Special Elite', sans-serif;
+    }
+    
+    .item p {
+        margin-top: 5px;
+        color: #666;
+    }
+
+    .category-title {
+        font-size: 24px;
+        color: #333;
+        margin-bottom: 10px; /* Add space below the title */
+        font-family: 'Special Elite', sans-serif;
+    }
+    
+    .view-menu-btn {
+        background-color: #730314;
+        color: white;
+        padding: 15px 18px;
+        font-size: 14px;
+        border: none;
+        cursor: pointer;
+        border-radius: 4px;
+        margin-right: 10px; /* Add space to the right of the button */
+        transition: background-color 0.3s;
+        font-family: 'Courier New', Courier, monospace;
+    }
+    
+    /* Style for the box containing the buttons */
+    .category {
+        border: 1px solid #ddd;
+        padding: 15px;
+        margin-bottom: 20px; /* Add space below the category box */
+        border-radius: 8px;
+    }
+    
+    /* Change button background color on hover */
+    .view-menu-btn:hover {
+        background-color: #58100f; /* Darken the color on hover */
+    }
+
+    .paddingbottom {
+        height: 100px;
+        padding-bottom: 400px;
+    }
+
+    .description {
+        font-family: cursive;
+    }
+</style>
+
+<section class="menu">
+    <div class="container page-section vh-100">
+        <div class="category dropdown">
+            <h1 class="category-title">Starters</h1>
+            <button class="view-menu-btn dropbtn" onclick="toggleContent('starters')">VIEW MENU</button>
+        
+            <!-- Caprese Bruschetta -->
+            <div class="item dropdown-content starters">
+                <span class="name">Caprese Bruschetta</span>
+                <span class="price">€8.50</span>
+                <p class="description">Toasted sourdough topped with diced plum tomatoes, fresh mozzarella, and basil leaves.</p>
+            </div>
+        
+            <!-- Fresh Soup of the Day -->
+            <div class="item dropdown-content starters">
+                <span class="name">Fresh Soup of the Day</span>
+                <span class="price">€7.30</span>
+                <p class="description">Abbey Tavern brown bread.</p>
+            </div>
+        
+            <!-- Abbey Tavern Howth Chowder -->
+            <div class="item dropdown-content starters">
+                <span class="name">Abbey Tavern Howth Chowder</span>
+                <span class="price">€12.50</span>
+                <p class="description">Cod, salmon, smoked haddock, oak smoked salmon, creamy vegetable velouté, fresh dill, Abbey Tavern brown bread.</p>
+            </div>
+        
+            <!-- Twice Cooked Wings -->
+            <div class="item dropdown-content starters">
+                <span class="name">Twice Cooked Wings</span>
+                <span class="price">€12.50</span>
+                <p class="description">Hot & Spicy House Buffalo Sauce (GF) or Teeling's Whiskey Honey BBQ Wings, Cashel Blue Cheese Dip.</p>
+            </div>
+        
+            <!-- Smoked Salmon -->
+            <div class="item dropdown-content starters">
+                <span class="name">Smoked Salmon</span>
+                <span class="price">€14.60</span>
+                <p class="description">Abbey Tavern Brown Soda Bread, Pea Hummus, Sweet & Sour Red Onions, Caper Aioli.</p>
+            </div>
+        
+            <!-- Beer Battered Cod Taco -->
+            <div class="item dropdown-content starters">
+                <span class="name">Beer Battered Cod Taco</span>
+                <span class="price">€14.60</span>
+                <p class="description">Soft Shell Taco, Pickled Slaw, Avocado Crema & Lime.</p>
+            </div>
+        
+            <!-- Pil Pil Crab Claws -->
+            <div class="item dropdown-content starters">
+                <span class="name">Pil Pil Crab Claws</span>
+                <span class="price">€15.65</span>
+                <p class="description">Spicy Chorizo, Chili, Garlic Oil, Baked Crusty Bread, Brioche Cracker.</p>
+            </div>
+        
+            <!-- Panko Crumbled Baked Brie -->
+            <div class="item dropdown-content starters">
+                <span class="name">Panko Crumbled Baked Brie</span>
+                <span class="price">€12.50</span>
+                <p class="description">Cranberry & Orange Marmalade, Honey Candid Pistachios, Brioche Cracker.</p>
+            </div>
+        
+            <!-- Avocado Prawn Cocktail -->
+            <div class="item dropdown-content starters">
+                <span class="name">Avocado Prawn Cocktail</span>
+                <span class="price">€13.55</span>
+                <p class="description">Smoked Tomato Mayo, Baby Gem, Crispy Bacon, Abbey Tavern Soda Bread.</p>
+            </div>
+        
+            <!-- Add more starter item dropdown-content starterss as needed -->
+        </div>
+
+        <div class="category">
+            <h1 class="category-title">Main Course</h1>
+            <button class="dropbtn view-menu-btn" onclick="toggleContent('main-course')">VIEW MENU</button>
+        
+            <!-- Classic Beef Wellington -->
+            <div class="item dropdown-content main-course">
+                <span class="name">Classic Beef Wellington</span>
+                <span class="price">€20</span>
+                <p class="description">Tender beef fillet wrapped in puff pastry, served with mushroom duxelles and red wine reduction.</p>
+            </div>
+        
+            <!-- 10oz 28 Day Aged Rib Eye Steak -->
+            <div class="item dropdown-content main-course">
+                <span class="name">10oz 28 Day Aged Rib Eye Steak</span>
+                <span class="price">€30.25</span>
+                <p class="description">The optimum cut of Beef for flavour & tenderness.</p>
+            </div>
+        
+            <!-- 8oz 28 Day Aged Fillet Steak -->
+            <div class="item dropdown-content main-course">
+                <span class="name">8oz 28 Day Aged Fillet Steak</span>
+                <span class="price">€39.70</span>
+                <p class="description">The most tender cut of Beef. Our prime Irish steaks are served with Teeling’s Whiskey Peppercorn Sauce or Garlic Butter and a choice of Creamed Mashed Potato or Skin on Fries.</p>
+            </div>
+        
+            <!-- Gourmet Burgers -->
+            <div class="item dropdown-content main-course">
+                <span class="name">The Abbey Tavern Burger</span>
+                <span class="price">€18.80</span>
+                <p class="description">8oz Prime Steak Burger, Blue Cheddar Rarebit, Caramelized Onions, Crispy Bacon, Toasted Brioche Bun, Skin on Fries. Gluten-Free available.</p>
+            </div>
+        
+            <div class="item dropdown-content main-course">
+                <span class="name">Buttermilk Chicken Burger</span>
+                <span class="price">€18.80</span>
+                <p class="description">Sriracha Chicken, Crispy Bacon, Beef Tomato, Avocado Mayo, Toasted Brioche Bun, Skin on Fries. Gluten-Free available.</p>
+            </div>
+        
+            <!-- CLASSIC MAINS & PASTA -->
+            <div class="item dropdown-content main-course">
+                <span class="name">Corned Beef & Cabbage</span>
+                <span class="price">€19.80</span>
+                <p class="description">One of Our Signature Dishes: Irish Corned Beef, Green Cabbage, Creamed Potato, Parsley sauce.</p>
+            </div>
+        
+            <div class="item dropdown-content main-course">
+                <span class="name">Beef & Guinness Pie</span>
+                <span class="price">€19.80</span>
+                <p class="description">Casserole of Slow Braised Irish Beef & Root Vegetables, Baked Pastry Top, Shaved Parsnip, Honey & Rocket Salad.</p>
+            </div>
+        
+            <div class="item dropdown-content main-course">
+                <span class="name">Lamb Shank Shepherd's Pie</span>
+                <span class="price">€20.90</span>
+                <p class="description">Slow-cooked Lamb, Root Vegetables, Gratinated Mash, Buttery Peppered Carrots. Gluten-Free.</p>
+            </div>
+        
+            <div class="item dropdown-content main-course">
+                <span class="name">Chicken Caesar Salad</span>
+                <span class="price">€16.70</span>
+                <p class="description">Grilled Chicken, Crispy Bacon, Baby Gem, Croutons, House Caesar Dressing, Shaved Parmesan Cheese. Gluten-Free option available.</p>
+            </div>
+        
+            <div class="item dropdown-content main-course">
+                <span class="name">Pan Fried Thick Cut Pork & Chive Sausages</span>
+                <span class="price">€18.80</span>
+                <p class="description">Creamed Mash Potato, Roasted Onion Gravy, Cauliflower Cheese.</p>
+            </div>
+        
+            <!-- Add more main course item dropdown-content main-courses as needed -->
+        </div>
+
+        <div class="category">
+            <h1 class="category-title">Desserts</h1>
+            <button class="dropbtn view-menu-btn" onclick="toggleContent('desserts')">VIEW MENU</button>
+        
+            <div class="item dropdown-content desserts">
+                <span class="name">Bread & Butter Pudding</span>
+                <span class="price">€7.30</span>
+                <p class="description">Our homemade signature dessert - with warm custard, vanilla bean ice cream.</p>
+            </div>
+        
+            <div class="item dropdown-content desserts">
+                <span class="name">Maple Pecan Cheesecake</span>
+                <span class="price">€7.30</span>
+                <p class="description">Fresh cream, butterscotch sauce.</p>
+            </div>
+        
+            <div class="item dropdown-content desserts">
+                <span class="name">Warm Apple Crumble</span>
+                <span class="price">€7.30</span>
+                <p class="description">House custard, vanilla bean ice cream.</p>
+            </div>
+        
+            <div class="item dropdown-content desserts">
+                <span class="name">Eton Mess</span>
+                <span class="price">€7.30</span>
+                <p class="description">Fresh strawberries, crushed meringue, cream.</p>
+            </div>
+        
+            <div class="item dropdown-content desserts">
+                <span class="name">Sticky Toffee Pear Pudding</span>
+                <span class="price">€7.30</span>
+                <p class="description">Vanilla bean ice cream.</p>
+            </div>
+        
+            <div class="item dropdown-content desserts">
+                <span class="name">Almond Chocolate Cake</span>
+                <span class="price">€7.30</span>
+                <p class="description">Vanilla bean ice cream, chocolate sauce.</p>
+            </div>
+        
+            <div class="item dropdown-content desserts">
+                <span class="name">Torched Baked Rice Pudding</span>
+                <span class="price">€7.30</span>
+                <p class="description">Spiced apple & golden raisin compote.</p>
+            </div>
+        
+            <div class="item dropdown-content desserts">
+                <span class="name">Chocolate & Fudge Berry Sundae</span>
+                <span class="price">€7.30</span>
+                <p class="description">Chocolate and vanilla ice cream, macerated berries, chocolate sauce, cream.</p>
+            </div>
+        
+            <div class="item dropdown-content desserts">
+                <span class="name">Selection of Ice Cream</span>
+                <span class="price">€6.30</span>
+                <p class="description">Please ask your server for today's selection.</p>
+            </div>
+            <!-- Add more dessert options as needed -->
+        </div>
+        
+
+        <div class="category">
+            <h1 class="category-title">Beers</h1>
+            <button class="dropbtn view-menu-btn" onclick="toggleContent('beers')">VIEW MENU</button>
+        
+            <!-- Craft Amber Ale -->
+            <div class="item dropdown-content beers">
+                <span class="name">Craft Amber Ale</span>
+                <span class="price">€5.50</span>
+                <p class="description">Smooth and malty amber ale with a hint of caramel.</p>
+            </div>
+        
+            <!-- Guinness Stout -->
+            <div class="item dropdown-content beers">
+                <span class="name">Guinness Stout</span>
+                <span class="price">€6.20</span>
+                <p class="description">ABV: 4.2. A classic Irish stout with a rich and creamy flavor.</p>
+            </div>
+        
+            <!-- Guinness 0.0 -->
+            <div class="item dropdown-content beers">
+                <span class="name">Guinness 0.0</span>
+                <span class="price">€5.70</span>
+                <p class="description">ABV: 0.0. Non-alcoholic version of the classic Guinness stout.</p>
+            </div>
+        
+            <!-- Beamish Stout -->
+            <div class="item dropdown-content beers">
+                <span class="name">Beamish Stout</span>
+                <span class="price">€5.80</span>
+                <p class="description">ABV: 3.8. A smooth and flavorful Irish stout.</p>
+            </div>
+        
+            <!-- Galway Hooker Craft Pale Ale -->
+            <div class="item dropdown-content beers">
+                <span class="name">Galway Hooker Craft Pale Ale</span>
+                <span class="price">€6.50</span>
+                <p class="description">ABV: 4.4. A refreshing pale ale from Galway Hooker Craft Brewery.</p>
+            </div>
+        
+            <!-- Smithwicks Traditional Irish Red Ale -->
+            <div class="item dropdown-content beers">
+                <span class="name">Smithwicks Traditional Irish Red Ale</span>
+                <span class="price">€6.20</span>
+                <p class="description">ABV: 3.8. A classic Irish red ale with a smooth taste.</p>
+            </div>
+        
+            <!-- Hop House 13 -->
+            <div class="item dropdown-content beers">
+                <span class="name">Hop House 13</span>
+                <span class="price">€6.70</span>
+                <p class="description">ABV: 4.5. Crisp and flavorful Irish lager.</p>
+            </div>
+        
+            <!-- Rockshore -->
+            <div class="item dropdown-content beers">
+                <span class="name">Rockshore</span>
+                <span class="price">€6.70</span>
+                <p class="description">ABV: 4.0. Another great choice for a refreshing Irish lager.</p>
+            </div>
+        
+            <!-- Rockshore Light -->
+            <div class="item dropdown-content beers">
+                <span class="name">Rockshore Light</span>
+                <span class="price">€6.70</span>
+                <p class="description">Light and easy-going Irish lager.</p>
+            </div>
+        
+            <!-- Orchard Thieves -->
+            <div class="item dropdown-content beers">
+                <span class="name">Orchard Thieves</span>
+                <span class="price">€6.70</span>
+                <p class="description">ABV: 4.5. Crisp and flavorful Irish cider.</p>
+            </div>
+        
+            <!-- Rockshore Cider -->
+            <div class="item dropdown-content beers">
+                <span class="name">Rockshore Cider</span>
+                <span class="price">€6.70</span>
+                <p class="description">ABV: 4.0. Another great choice for a refreshing Irish cider.</p>
+            </div>
+        
+            <!-- Hope Beer Brewery Hop-On IPA -->
+            <div class="item dropdown-content beers">
+                <span class="name">Hope Beer Brewery Hop-On IPA</span>
+                <span class="price">€6.50</span>
+                <p class="description">ABV: 4.3. A hoppy and flavorful IPA from Hope Beer Brewery.</p>
+            </div>
+        
+            <!-- Heineken -->
+            <div class="item dropdown-content beers">
+                <span class="name">Heineken</span>
+                <span class="price">€6.50</span>
+                <p class="description">ABV: 4.2. A classic lager from the Netherlands.</p>
+            </div>
+        
+            <!-- Carlsberg -->
+            <div class="item dropdown-content beers">
+                <span class="name">Carlsberg</span>
+                <span class="price">€6.70</span>
+                <p class="description">ABV: 4.5. A Danish lager with a crisp taste.</p>
+            </div>
+        </div>
+
+            <div class="category">
+                <h1 class="category-title">Wines</h1>
+                <button class="dropbtn view-menu-btn" onclick="toggleContent('wines')">VIEW MENU</button>
+            
+                <div class="item dropdown-content wines">
+                    <span class="name">Costa Cruz Sauvignon Blanc / Verdejo 2020</span>
+                    <span class="price">€7.00 per glass | €28.00 per bottle</span>
+                    <p class="description">La Mancha, Spain</p>
+                </div>
+            
+                <div class="item dropdown-content wines">
+                    <span class="name">Zagalia Pinot Grigio 2021</span>
+                    <span class="price">€7.50 per glass | €30.00 per bottle</span>
+                    <p class="description">Sicilia, Italy</p>
+                </div>
+            
+                <div class="item dropdown-content wines">
+                    <span class="name">Willowglen Gewürztraminer Riesling 2020</span>
+                    <span class="price">€8.50 per glass | €34.00 per bottle</span>
+                    <p class="description">NSW Australia</p>
+                </div>
+            
+                <div class="item dropdown-content wines">
+                    <span class="name">Jordan Chenin Blanc 2020</span>
+                    <span class="price">€9.50 per glass | €38.00 per bottle</span>
+                    <p class="description">Jordan Estate, Stellenbosch, South Africa</p>
+                </div>
+            
+                <div class="item dropdown-content wines">
+                    <span class="name">Babington Brook Chardonnay 2019</span>
+                    <span class="price">€8.00 per glass | €32.00 per bottle</span>
+                    <p class="description">South Eastern Australia</p>
+                </div>
+            
+                <div class="item dropdown-content wines">
+                    <span class="name">Ten Rocks Sauvignon Blanc 2021</span>
+                    <span class="price">€9.50 per glass | €38.00 per bottle</span>
+                    <p class="description">Malborough, New Zealand</p>
+                </div>
+            
+                <div class="item dropdown-content wines">
+                    <span class="name">Sauvignon de Touraine 2021</span>
+                    <span class="price">€8.00 per glass | €32.00 per bottle</span>
+                    <p class="description">Thierry Delaunay, Loire, France</p>
+                </div>
+            
+                <div class="item dropdown-content wines">
+                    <span class="name">Macon Lugny Les Genievres 2020</span>
+                    <span class="price">€11.00 per glass | €44.00 per bottle</span>
+                    <p class="description">Louis Latour, France</p>
+                </div>
+            
+                <div class="item dropdown-content wines">
+                    <span class="name">Grand Ardeche 2019</span>
+                    <span class="price">€12.00 per glass | €48.00 per bottle</span>
+                    <p class="description">Louis Latour, France</p>
+                </div>
+                <!-- Add more wine options as needed -->
+            </div>
+            
+        <div class="category">
+            <h1 class="category-title">Whiskey</h1>
+            <button class="dropbtn view-menu-btn" onclick="toggleContent('whiskey')">VIEW MENU</button>
+        
+            <!-- Jameson -->
+            <div class="item dropdown-content whiskey">
+                <span class="name">Jameson</span>
+                <span class="price">€5.50</span>
+                <p class="description">Smooth and classic Irish whiskey.</p>
+            </div>
+        
+            <!-- Crested Ten -->
+            <div class="item dropdown-content whiskey">
+                <span class="name">Crested Ten</span>
+                <span class="price">€7.80</span>
+                <p class="description">Rich and full-bodied with a hint of sherry sweetness.</p>
+            </div>
+        
+            <!-- Jameson Black Barrel -->
+            <div class="item dropdown-content whiskey">
+                <span class="name">Jameson Black Barrel</span>
+                <span class="price">€8.90</span>
+                <p class="description">Triple-distilled and aged in charred oak barrels for a bold flavor.</p>
+            </div>
+        
+            <!-- Jameson Cask Mates Stout Edition -->
+            <div class="item dropdown-content whiskey">
+                <span class="name">Jameson Cask Mates Stout Edition</span>
+                <span class="price">€7.10</span>
+                <p class="description">Infused with the rich flavors of stout beer.</p>
+            </div>
+        
+            <!-- Jameson Gold Reserve -->
+            <div class="item dropdown-content whiskey">
+                <span class="name">Jameson Gold Reserve</span>
+                <span class="price">€27.50</span>
+                <p class="description">A luxurious blend with a smooth and velvety texture.</p>
+            </div>
+        
+            <!-- Jameson 18 Year Old Special Reserve -->
+            <div class="item dropdown-content whiskey">
+                <span class="name">Jameson 18 Year Old Special Reserve</span>
+                <span class="price">€30.00</span>
+                <p class="description">Exceptionally smooth and well-balanced.</p>
+            </div>
+        
+            <!-- Jameson Rarest Vintage Reserve -->
+            <div class="item dropdown-content whiskey">
+                <span class="name">Jameson Rarest Vintage Reserve</span>
+                <span class="price">€160.00</span>
+                <p class="description">An exquisite and rare whiskey blend.</p>
+            </div>
+        
+            <!-- Midleton Very Rare 2017 -->
+            <div class="item dropdown-content whiskey">
+                <span class="name">Midleton Very Rare 2017</span>
+                <span class="price">€37.00</span>
+                <p class="description">A limited edition, highly regarded Irish whiskey.</p>
+            </div>
+        
+            <!-- Powers Gold Label -->
+            <div class="item dropdown-content whiskey">
+                <span class="name">Powers Gold Label</span>
+                <span class="price">€5.50</span>
+                <p class="description">A traditional Irish whiskey with a spicy and robust character.</p>
+            </div>
+        
+            <!-- Paddy -->
+            <div class="item dropdown-content whiskey">
+                <span class="name">Paddy</span>
+                <span class="price">€5.50</span>
+                <p class="description">Smooth and light with a hint of honey sweetness.</p>
+            </div>
+        
+            <!-- Lockes -->
+            <div class="item dropdown-content whiskey">
+                <span class="name">Lockes</span>
+                <span class="price">€5.50</span>
+                <p class="description">A classic Irish whiskey with a balanced and mellow profile.</p>
+            </div>
+        
+            <!-- Roe & Co. -->
+            <div class="item dropdown-content whiskey">
+                <span class="name">Roe & Co.</span>
+                <span class="price">€7.80</span>
+                <p class="description">A blend of malt and grain whiskeys with a smooth and creamy character.</p>
+            </div>
+        
+            <!-- Irish American -->
+            <div class="item dropdown-content whiskey">
+                <span class="name">Irish American</span>
+                <span class="price">€6.70</span>
+                <p class="description">An Irish whiskey with a touch of American influence.</p>
+            </div>
+        
+            <!-- Jameson Coopers Croze -->
+            <div class="item dropdown-content whiskey">
+                <span class="name">Jameson Coopers Croze</span>
+                <span class="price">€13.00</span>
+                <p class="description">Named after the tool used by coopers to create whiskey barrels.</p>
+            </div>
+        
+            <!-- Jameson Blenders Dog -->
+            <div class="item dropdown-content whiskey">
+                <span class="name">Jameson Blenders Dog</span>
+                <span class="price">€13.00</span>
+                <p class="description">A tribute to the blenders' skilled and crucial role in whiskey-making.</p>
+            </div>
+        
+        </div>
+        
+
+
+    </div>
+
+    <div class="paddingbottom"></div>
+    <script>
+        function toggleContent(category) {
+            var items = document.querySelectorAll('.item.dropdown-content');
+        
+            items.forEach(function(item) {
+                // Check if the item belongs to the selected category
+                if (item.classList.contains(category)) {
+                    // Toggle the visibility of the item
+                    item.classList.toggle('active');
+                }
+            });
+        }
+        document.addEventListener("DOMContentLoaded", function() {
+            var hash = window.location.hash.substr(1); // Get the hash without the #
+            if (hash) {
+                toggleContent(hash);
+            }
+        });
+    </script>
+</section>
+{% endblock %}
+
+{% block footer %}{% endblock %}

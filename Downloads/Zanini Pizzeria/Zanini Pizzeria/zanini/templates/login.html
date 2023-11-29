@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %} Login | Taverna {% endblock %}
+
+{% block content %}
+{% for message in messages %}
+<div{% if message.tags %} class="{{ message.tags }} message-style" {% endif %}>{{ message }}</div>
+	{% endfor %}
+	<div class="page-section vh-100 login-page animated-element-down">
+		<form class="form-container container animated-element-down" method="POST" novalidate>
+			<h2 class="form-title">Login</h2>
+			<div class="vh-10 form-group row g-3 animated-element-down">
+				{% csrf_token %}
+				{{form.as_p}}
+			</div>
+			<input type="submit" value="Login" />
+			<p class="form-p">Don't have an account? <a href="/register">Register</a></p>
+		</form>
+	</div>
+
+
+	{% endblock content%}

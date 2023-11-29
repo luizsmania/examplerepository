@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+{% load static %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{% block title %} Sign Up Page {% endblock %}
+
+{% block content %}
+  {% for message in messages %}
+    <div{% if message.tags %} class="{{ message.tags }} message-style" {% endif %}>{{ message }}</div>
+  {% endfor %}
+  
+  <div class="page-section vh-100 register-page animated-element-down register-page">
+    <form class="form-container container animated-element-down" method="POST" novalidate>
+      {% csrf_token %}
+      <h2 class="form-title">Sign Up</h2>
+      <div class="vh-10 form-group row g-3 animated-element-down">
+        {{form.as_p}}
+      </div>
+      <input type="submit" value="Register" style="width: auto;" />
+      <p class="form-p">Already have an account? <a href="/login">Login</a></p>
+    </form>
+  </div>
+{% endblock content %}

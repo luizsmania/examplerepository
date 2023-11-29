@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+{% block title %} Menu | Taverna {% endblock %}
+{% load static %}
+
+<!-- Include the CSS and JS for the toggle functionality -->
+<style>
+    .item {
+        display: none;
+    }
+
+    .active {
+        display: block;
+    }
+
+    /* Add your other styles here */
+</style>
+
+<script>
+    function toggleContent(category) {
+        var items = document.querySelectorAll('.item.dropdown-content');
+
+        items.forEach(function(item) {
+            if (item.classList.contains(category)) {
+                item.classList.toggle('active');
+            }
+        });
+    }
+
+    // Check for the hash in the URL on page load
+    document.addEventListener("DOMContentLoaded", function() {
+        var hash = window.location.hash.substr(1); // Get the hash without the #
+        if (hash) {
+            toggleContent(hash);
+        }
+    });
+</script>
+
+<!-- Portfolio -->
+{% block content %}
+<section class="page-section portfolio-div">
+    <div id="portfolio">
+        <div class="container-fluid p-0 portfolio-div">
+            <div class="row g-0">
+                <div class="col-lg-4 col-sm-6">
+                    <a href="{% url 'menu_items' %}#starters" onclick="toggleContent('starters')">
+                        <div class="portfolio-box">
+                            <img class="img-fluid" src="{% static 'assets/img/portfolio/thumbnails/starter.jpg' %}" alt="..." />
+                            <div class="portfolio-box-caption p-3">
+                                <div class="project-name">Starters</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <a href="{% url 'menu_items' %}#main-course" onclick="toggleContent('main-course')">
+                        <div class="portfolio-box">
+                            <img class="img-fluid" src="{% static 'assets/img/portfolio/thumbnails/maincourse.jpg' %}" alt="..." />
+                            <div class="portfolio-box-caption p-3">
+                                <div class="project-name">Main Course</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                
+                <div class="col-lg-4 col-sm-6">
+                    <a href="{% url 'menu_items' %}#desserts" onclick="toggleContent('desserts')">
+                        <div class="portfolio-box">
+                            <img class="img-fluid" src="{% static 'assets/img/portfolio/thumbnails/dessert.jpg' %}" alt="..." />
+                            <div class="portfolio-box-caption p-3">
+                                <div class="project-name">Dessert</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <a href="{% url 'menu_items' %}#beers" onclick="toggleContent('beers')">
+                        <div class="portfolio-box">
+                            <img class="img-fluid" src="{% static 'assets/img/portfolio/thumbnails/beer.jpg' %}" alt="..." />
+                            <div class="portfolio-box-caption p-3">
+                                <div class="project-name">Beers</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <a href="{% url 'menu_items' %}#wines" onclick="toggleContent('wines')">
+                        <div class="portfolio-box">
+                            <img class="img-fluid" src="{% static 'assets/img/portfolio/thumbnails/wine.jpg' %}" alt="..." />
+                            <div class="portfolio-box-caption p-3">
+                                <div class="project-name">Wines</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <a href="{% url 'menu_items' %}#whiskey" onclick="toggleContent('whiskey')">
+                        <div class="portfolio-box">
+                            <img class="img-fluid" src="{% static 'assets/img/portfolio/thumbnails/31.jpg' %}" alt="..." />
+                            <div class="portfolio-box-caption p-3">
+                                <div class="project-name">Whiskey</div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
